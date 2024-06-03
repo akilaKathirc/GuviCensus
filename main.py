@@ -13,7 +13,7 @@ st.title(pageTitle +"  "+pageIcon)
 
 hide_st_style = """
                 <style>
-                MainMenu {visibility:hidden;}
+                #MainMenu {visibility:hidden;}
                 header {visibility:hid#den;}
                 footer {visibility:hidden;}
                 </style>
@@ -23,7 +23,11 @@ st.markdown(hide_st_style,unsafe_allow_html=True)
 # with st.sidebar:
 selected = option_menu(
     menu_title=None,
-    options = ["Data Entry", "Data Visualization"],
+    options = ["Upload Files", "Data Visualization"],
     icons = ["pencil-fill","bar-chart-fill"],
     orientation = "horizontal"
 )
+
+
+# if selected =="Upload Files":
+    
