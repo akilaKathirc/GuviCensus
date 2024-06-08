@@ -1,11 +1,11 @@
 import pandas as pd
-
+import streamlit as st
 from InsertToMongoDB import insert_censusdata_2011
 from tx import clean_data_for_bson, fill_nan_with_another_field, fill_nan_with_diff, fill_nan_with_sum
 
 def FixNullValues():
     # Load the CSV file into a DataFrame
-    file_path = './Data/census_2011.csv'
+    file_path = './Data/renamed_census_2011.csv'
     df = pd.read_csv(file_path)
     df = clean_data_for_bson(df)
     print('*'*100)
@@ -60,13 +60,13 @@ def FixNullValues():
     #########################################################################
 
     # Hint: Literate = Literate_Male + Literate_Female
-    literacySum = ['Male_Literate', 'Female_Literate']
+    literacySum = ['Literate_Male', 'Literate_Female']
 
     df['Literate'] = df.apply(lambda row: fill_nan_with_sum(row, 'Literate', literacySum), axis=1)
 
-    df['Male_Literate'] = df.apply(lambda row: fill_nan_with_diff(row, 'Literate',  'Female_Literate', 'Male_Literate'), axis=1)
+    df['Literate_Male'] = df.apply(lambda row: fill_nan_with_diff(row, 'Literate',  'Literate_Female', 'Literate_Male'), axis=1)
 
-    df['Female_Literate'] = df.apply(lambda row: fill_nan_with_diff(row, 'Literate',  'Male_Literate', 'Female_Literate'), axis=1)
+    df['Literate_Female'] = df.apply(lambda row: fill_nan_with_diff(row, 'Literate',  'Literate_Male', 'Literate_Female'), axis=1)
     #########################################################################
 
 
@@ -82,20 +82,21 @@ def FixNullValues():
     #########################################################################
 
     # Hint: Households = Households_Rural + Households_Urban
-    # houseHolds = ['Households_Rural', 'Households_Urban']
+    houseHolds = ['Households_Rural', 'Households_Urban']
 
-    # df['Households'] = df.apply(lambda row: fill_nan_with_sum(row, 'Households', houseHolds), axis=1)
+    df['Households'] = df.apply(lambda row: fill_nan_with_sum(row, 'Households', houseHolds), axis=1)
     #########################################################################
 
 
     #########################################################################
 
     # powerParity = ['Power_Parity_Rs_150000_240000']
+    # vl = df.apply(lambda row: fill_nan_with_another_field(row, 'Power_Parity_Rs_150000_330000', powerParity), axis=1)
+    # st.write(vl)
+    # df['Power_Parity_Rs_150000_330000'] = vl
 
-    # df['Power_Parity_Rs_150000_330000'] = df.apply(lambda row: fill_nan_with_another_field(row, 'Power_Parity_Rs_150000_330000', powerParity), axis=1)
-
-    #########################################################################
-    #########################################################################
+    # #########################################################################
+    # #########################################################################
     # powerParity2 = ['Power_Parity_Rs_150000_330000']
 
     # df['Power_Parity_Rs_150000_240000'] = df.apply(lambda row: fill_nan_with_another_field(row, 'Power_Parity_Rs_150000_240000', powerParity2), axis=1)

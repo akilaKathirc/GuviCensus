@@ -26,7 +26,8 @@ def renameCensusDataFile():
         'Age_Group_0_29': 'Young_and_Adult',
         'Age_Group_30_49': 'Middle_Aged',
         'Age_Group_50': 'Senior_Citizen',
-        'Age not stated': 'Age_Not_Stated'
+        'Age not stated': 'Age_Not_Stated',
+        'District code': 'District_code'
     }
 
     # Renaming the columns in the dataframe

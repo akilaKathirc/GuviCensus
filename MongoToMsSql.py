@@ -53,7 +53,7 @@ def MongoToSqlServer():
 
     # Fetch data from MongoDB
     mongo_data = list(mongo_collection.find())
-    table_name = "census2011dt"
+    table_name = "census_2011"
 
     # Determine the columns and their types from the MongoDB documents
     columns = defaultdict(set)

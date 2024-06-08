@@ -1,6 +1,8 @@
 import streamlit as st
 
 from FileUpload import CensusFileUpload
+from FinalOp import SQLFinalOutput
+from FinalOutPut import runSqlScript
 from FixNullValues import FixNullValues
 from MongoToMsSql import MongoToSqlServer
 from renameColumn import renameCensusDataFile
@@ -46,14 +48,20 @@ def contact():
 
 def FixNullValue():
     FixNullValues()
+    st.write("Data pushed to Mongo DB")
     if st.button("Mongo To MsSql"):
         st.session_state.page = 'mongoToSql'
         st.rerun()
 
 def MongoToMsSql():
     MongoToSqlServer()
+    if st.button("Sql Selects"):
+        st.session_state.page = 'SqlSelects'
+        st.rerun()
     
-
+def SqlSelectQueryOutput():
+    # SQLFinalOutput()
+    runSqlScript()
 
 # Initialize session state for page if not already set
 if 'page' not in st.session_state:
@@ -72,6 +80,8 @@ elif st.session_state.page == 'CleanandFix':
     FixNullValue()
 elif st.session_state.page == 'mongoToSql':
     MongoToMsSql()
+elif st.session_state.page == 'SqlSelects':
+    SqlSelectQueryOutput()
 
     
     
