@@ -1,7 +1,7 @@
 import streamlit as st
 
 from FileUpload import CensusFileUpload
-from FinalOp import SQLFinalOutput
+from FinalOp import  runMsSQL
 from FinalOutPut import runSqlScript
 from FixNullValues import FixNullValues
 from MongoToMsSql import MongoToSqlServer
@@ -61,7 +61,8 @@ def MongoToMsSql():
     
 def SqlSelectQueryOutput():
     # SQLFinalOutput()
-    runSqlScript()
+    # runSqlScript()
+    runMsSQL()
 
 # Initialize session state for page if not already set
 if 'page' not in st.session_state:
