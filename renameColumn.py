@@ -17,7 +17,7 @@ def renameCensusDataFile():
 
     # Renaming the specified columns
     renamed_columns = {
-        'State name': 'State/UT',
+        'State name': 'State_UT',
         'District name': 'District',
         'Male_Literate': 'Literate_Male',
         'Female_Literate': 'Literate_Female',
