@@ -24,6 +24,7 @@ data.rename(columns=renamed_columns, inplace=True)
 # Function to convert state/UT names to the desired format
 def format_state_name(name):
     words = name.split()
+    words = [word.replace('&', 'and') for word in words]
     formatted_words = [word.capitalize() if word.lower() != "and" else "and" for word in words]
     return ' '.join(formatted_words)
 
